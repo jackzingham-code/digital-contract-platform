@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contractly</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">Contractly</div>
+  <div class="top-actions"><button class="btn ghost" onclick="newContract()">New contract</button></div>
+</header>
+<div class="app">
+  <aside class="sidebar">
+    <div class="side-title">Contracts</div>
+    <button class="nav active" data-filter="all" onclick="setFilter('all')">All contracts <span id="countAll"></span></button>
+    <button class="nav" data-filter="draft" onclick="setFilter('draft')">Drafts <span id="countDraft"></span></button>
+    <button class="nav" data-filter="waiting" onclick="setFilter('waiting')">Waiting for signature <span id="countWaiting"></span></button>
+    <button class="nav" data-filter="partially_signed" onclick="setFilter('partially_signed')">Partially signed <span id="countPartial"></span></button>
+    <button class="nav" data-filter="fully_signed" onclick="setFilter('fully_signed')">Fully signed <span id="countFull"></span></button>
+  </aside>
+  <main class="main">
+    <section id="dashboardView">
+      <div class="page-head">
+        <div><p class="eyebrow">Dashboard</p><h1>My contracts</h1></div>
+        <button class="btn primary" onclick="newContract()">Create contract</button>
+      </div>
+      <div id="contractList" class="contract-list"></div>
+    </section>
+
+    <section id="editorView" class="hidden">
+      <div class="editor-head">
+        <button class="back" onclick="showDashboard()">← Back</button>
+        <div class="editor-actions">
+          <button class="btn ghost" onclick="copyShareLink()">Copy link</button>
+          <button id="sendBtn" class="btn primary" onclick="sendForSignature()">Send for Signature</button>
+        </div>
+      </div>
+      <div class="workspace">
+        <div class="editor-pane">
+          <div class="section-title"><span>Contract editor</span><span id="lockLabel"></span></div>
+          <input id="title" class="title-input" placeholder="Contract title">
+          <div class="meta-grid">
+            <label>Date<input id="contractDate" type="date"></label>
+            <label>First person's name<input id="firstName" placeholder="Your name"></label>
+            <label>Second person's name<input id="secondName" placeholder="Other person's name"></label>
+          </div>
+          <div class="toolbar">
+            <button onclick="formatText('bold')"><b>B</b></button>
+            <button onclick="formatText('formatBlock','H2')">H</button>
+            <button onclick="formatText('insertUnorderedList')">• List</button>
+            <button onclick="formatText('insertOrderedList')">1. List</button>
+            <button onclick="formatText('formatBlock','P')">¶</button>
+          </div>
+          <div id="content" class="document-editor" contenteditable="true" spellcheck="true"></div>
+          <div class="save-row"><span id="saveStatus">Draft changes are saved locally in the editor.</span><button class="btn primary" onclick="saveContract()">Save changes</button></div>
+        </div>
+        <div class="preview-pane">
+          <div class="section-title">Live preview</div>
+          <div id="preview" class="paper"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="toast" class="toast"></div>
+<script src="/app.js"></script>
+</body>
+</html>

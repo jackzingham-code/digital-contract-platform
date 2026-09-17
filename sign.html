@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign contract</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar"><div class="brand">Contractly</div></header>
+<main class="sign-page">
+  <div id="signLoading">Loading contract…</div>
+  <div id="signApp" class="hidden">
+    <div class="sign-head">
+      <div><p class="eyebrow">Private contract</p><h1 id="signTitle"></h1><div id="signStatus"></div></div>
+    </div>
+    <div class="sign-grid">
+      <article id="signedPaper" class="paper"></article>
+      <aside class="sign-card">
+        <h2>Signing</h2>
+        <div id="signerPicker" class="signer-picker">
+          <button onclick="chooseSigner('first')" id="firstChoice"></button>
+          <button onclick="chooseSigner('second')" id="secondChoice"></button>
+        </div>
+        <label>Your name<input id="signerName" placeholder="Enter your full name"></label>
+        <div class="sig-tabs"><button class="active" onclick="sigMode('draw')">Draw</button><button onclick="sigMode('type')">Type</button></div>
+        <canvas id="sigCanvas" width="600" height="180"></canvas>
+        <input id="typedSig" class="typed-signature hidden" placeholder="Type your signature">
+        <div class="sign-actions"><button class="btn ghost" onclick="clearSig()">Clear</button><button id="signButton" class="btn primary" onclick="signContract()">Sign Contract</button></div>
+        <p id="signHelp" class="muted"></p>
+      </aside>
+    </div>
+  </div>
+</main>
+<script src="/sign.js"></script>
+</body>
+</html>
